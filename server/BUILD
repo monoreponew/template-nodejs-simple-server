@@ -11,6 +11,8 @@ nodejs_binary(
 nodejs_image(
     name = "server_image",
     entry_point = "server.js",
+    include_node_repo_args = False,
+    node_repository_name = "nodejs_linux_amd64",
     visibility = ["//visibility:public"],
 )
 
