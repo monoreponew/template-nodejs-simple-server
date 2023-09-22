@@ -1,1 +1,1 @@
-# Simple Go Server Template
+# Simple Nodejs Server Template
