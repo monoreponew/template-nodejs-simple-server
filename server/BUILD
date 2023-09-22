@@ -1,27 +1,21 @@
-load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
-load("@io_bazel_rules_docker//go:image.bzl", "go_image")
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
+load("@io_bazel_rules_docker//nodejs:image.bzl", "nodejs_image")
 load("@genrules//google_cloud_run:index.bzl", "deploy")
 
-go_library(
-    name = "lib",
-    srcs = ["main.go"],
-    importpath = "foo",
-    visibility = ["//visibility:private"],
-)
-
-go_binary(
-    name = "go",
-    embed = [":lib"],
+nodejs_binary(
+    name = "server",
+    entry_point = "server.js",
     visibility = ["//visibility:public"],
 )
 
-go_image(
-    name = "go_image",
-    binary = ":go",
+nodejs_image(
+    name = "server_image",
+    entry_point = "server.js",
+    visibility = ["//visibility:public"],
 )
 
 deploy(
-    name = "go_service",
-    target = ":go_image",
-    port = "3333",
+    name = "nodejs_service",
+    target = ":server_image",
+    port = "1337",
 )
