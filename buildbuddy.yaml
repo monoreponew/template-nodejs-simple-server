@@ -1,5 +1,6 @@
 actions:
   - name: "Build"
+    container_image: ubuntu-20.04
     triggers:
       push:
         branches:
@@ -8,11 +9,12 @@ actions:
         branches:
           - "*"
     bazel_commands:
-        - "build //..."
+        - "build //... --config=workflows"
   - name: "Deploy"
+    container_image: ubuntu-20.04
     triggers:
       push:
         branches:
           - "main"
     bazel_commands:
-      - "run server:nodejs_service --config=workflows"
+        - "run //server:js_service --config=workflows"

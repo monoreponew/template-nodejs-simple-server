@@ -1,0 +1,2 @@
+bazel_dep(name = "genrules", version = "0.5")
+bazel_dep(name = "aspect_rules_js", version = "1.33.3")

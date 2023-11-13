@@ -1,1 +1,1 @@
-# Simple Nodejs Server Template
+# Simple JS Server Template
